@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Learning Platform</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button id="darkModeToggle" class="btn btn-sm">
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
+        </button>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="quick-nav">
+        <div class="quick-nav-toggle">
+            <button class="btn btn-primary rounded-circle">
+                <i class="fas fa-compass"></i>
+            </button>
+        </div>
+        <div class="quick-nav-menu">
+            <a href="#introduction" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Introduction">
+                <i class="fas fa-info-circle"></i>
+            </a>
+            <a href="#line-charts" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Line Charts">
+                <i class="fas fa-chart-line"></i>
+            </a>
+            <a href="#bar-charts" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Bar Charts">
+                <i class="fas fa-chart-bar"></i>
+            </a>
+            <a href="#pie-charts" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Pie Charts">
+                <i class="fas fa-chart-pie"></i>
+            </a>
+            <a href="#doughnut-charts" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Doughnut Charts">
+                <i class="fas fa-circle-notch"></i>
+            </a>
+            <a href="#radar-charts" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Radar Charts">
+                <i class="fas fa-spider"></i>
+            </a>
+            <a href="#advanced" class="quick-nav-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Advanced Features">
+                <i class="fas fa-code"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-simple me-2"></i>
+                Chart.js Learning Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#line-charts">Line Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bar-charts">Bar Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pie-charts">Pie Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#doughnut-charts">Doughnut Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#radar-charts">Radar Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#advanced">Advanced</a></li>
+                </ul>
+                <div class="ms-auto d-none d-lg-block">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="display-3 fw-bold">Master <span class="gradient-text">Chart.js</span></h1>
+                    <p class="lead">Create beautiful, interactive data visualizations for your web applications</p>
+                    <div class="hero-buttons">
+                        <a href="#introduction" class="btn btn-primary btn-lg">Get Started</a>
+                        <a href="https://www.chartjs.org/docs/latest/" target="_blank" class="btn btn-outline-primary btn-lg ms-2">
+                            Official Docs <i class="fas fa-external-link-alt ms-1"></i>
+                        </a>
+                    </div>
+                    <div class="features-list mt-4">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Responsive</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Interactive</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Customizable</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Animated</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-chart-container">
+                        <canvas id="hero-chart"></canvas>
+                        <div class="chart-decoration"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <!-- Introduction Section -->
+        <section id="introduction" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Introduction to Chart.js</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <p class="card-text">
+                                Chart.js is a popular JavaScript library that allows developers to create beautiful, 
+                                responsive, and interactive charts for web applications. It uses HTML5 Canvas for 
+                                rendering charts, making them highly customizable and performant.
+                            </p>
+                            
+                            <div class="info-box">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Why Choose Chart.js?</h4>
+                                    <ul>
+                                        <li>Simple yet flexible API</li>
+                                        <li>8 chart types with responsive options</li>
+                                        <li>Built-in animations</li>
+                                        <li>Supports modern browsers and IE11+</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="version-card">
+                                <div class="version-header">
+                                    <i class="fas fa-code-branch"></i>
+                                    <h4>Latest Version</h4>
+                                </div>
+                                <div class="version-body">
+                                    <span class="version-number">4.4.0</span>
+                                    <a href="https://github.com/chartjs/Chart.js/releases" target="_blank" class="btn btn-sm btn-outline-primary mt-2">Release Notes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Getting Started</h3>
+                    <p>To use Chart.js, you need to include the library in your project:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>HTML</span>
+                            <button class="copy-btn" data-clipboard-target="#code1">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code class="language-html" id="code1">&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                    
+                    <p>Or install via npm:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" data-clipboard-target="#code2">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash" id="code2">npm install chart.js</code></pre>
+                    </div>
+                    
+                    <h3>Basic Structure</h3>
+                    <p>Creating a chart with Chart.js involves these basic steps:</p>
+                    <ol>
+                        <li>Create a canvas element in your HTML</li>
+                        <li>Get the canvas context using JavaScript</li>
+                        <li>Create a new Chart instance with configuration</li>
+                    </ol>
+                    
+                    <div class="code-tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="html-tab" data-bs-toggle="tab" data-bs-target="#html" type="button" role="tab">HTML</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="js-tab" data-bs-toggle="tab" data-bs-target="#js" type="button" role="tab">JavaScript</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="result-tab" data-bs-toggle="tab" data-bs-target="#result" type="button" role="tab">Result</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="html" role="tabpanel">
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>HTML</span>
+                                        <button class="copy-btn" data-clipboard-target="#code3">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-html" id="code3">&lt;canvas id="myChart"&gt;&lt;/canvas&gt;</code></pre>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="js" role="tabpanel">
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>JavaScript</span>
+                                        <button class="copy-btn" data-clipboard-target="#code4">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-javascript" id="code4">// Get the canvas element
+const ctx = document.getElementById('myChart').getContext('2d');
+
+// Create a new chart
+const myChart = new Chart(ctx, {
+    type: 'bar',  // Chart type
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});</code></pre>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="result" role="tabpanel">
+                                <div class="result-container">
+                                    <canvas id="example-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Line Charts Section -->
+        <section id="line-charts" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Line Charts</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Line charts are perfect for showing trends over time or comparing multiple data series.
+                        They're one of the most commonly used chart types for visualizing continuous data.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Basic Line Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="basic-line-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="basic-line-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="basic-line-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Multi-line Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="multi-line-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="multi-line-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="multi-line-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Code Example: Basic Line Chart</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>JavaScript</span>
+                                <button class="copy-btn" data-clipboard-target="#code5">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript" id="code5">const ctx = document.getElementById('basic-line-chart').getContext('2d');
+const basicLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Monthly Sales',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Monthly Sales Data'
+            }
+        }
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="accordion" id="lineChartOptions">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLineOptions">
+                                        Line Chart Options
+                                    </button>
+                                </h2>
+                                <div id="collapseLineOptions" class="accordion-collapse collapse show" data-bs-parent="#lineChartOptions">
+                                    <div class="accordion-body">
+                                        <p>Key configuration options for line charts:</p>
+                                        <div class="options-grid">
+                                            <div class="option-item">
+                                                <div class="option-name">fill</div>
+                                                <div class="option-desc">Whether to fill the area under the line</div>
+                                            </div>
+                                            <div class="option-item">
+                                                <div class="option-name">tension</div>
+                                                <div class="option-desc">Controls the line curvature (0 for straight lines)</div>
+                                            </div>
+                                            <div class="option-item">
+                                                <div class="option-name">pointRadius</div>
+                                                <div class="option-desc">Size of the data points</div>
+                                            </div>
+                                            <div class="option-item">
+                                                <div class="option-name">borderDash</div>
+                                                <div class="option-desc">Creates dashed lines [dashLength, gapLength]</div>
+                                            </div>
+                                            <div class="option-item">
+                                                <div class="option-name">stepped</div>
+                                                <div class="option-desc">Creates a stepped line (true/false or 'before'/'after'/'middle')</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bar Charts Section -->
+        <section id="bar-charts" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Bar Charts</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Bar charts are excellent for comparing discrete categories or groups of data.
+                        They can be displayed vertically (bar charts) or horizontally (horizontal bar charts).
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Vertical Bar Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="vertical-bar-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="vertical-bar-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="vertical-bar-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Horizontal Bar Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="horizontal-bar-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="horizontal-bar-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="horizontal-bar-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Code Example: Vertical Bar Chart</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>JavaScript</span>
+                                <button class="copy-btn" data-clipboard-target="#code6">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript" id="code6">const ctx = document.getElementById('vertical-bar-chart').getContext('2d');
+const verticalBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: 'Popularity of Colors',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Stacked Bar Chart</h3>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="chart-card">
+                                    <div class="chart-card-header">
+                                        <h3>Stacked Bar Chart</h3>
+                                        <div class="chart-controls">
+                                            <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="stacked-bar-chart" data-action="randomize">
+                                                <i class="fas fa-random"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="stacked-bar-chart" data-action="download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="chart-container">
+                                        <canvas id="stacked-bar-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="info-box">
+                                    <div class="info-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <h4>Stacked Bar Charts</h4>
+                                        <p>
+                                            Stacked bar charts allow you to show multiple data series stacked on top of each other.
+                                            This is useful for showing part-to-whole relationships while still maintaining the ability
+                                            to compare total amounts across categories.
+                                        </p>
+                                        <p>
+                                            To create a stacked bar chart, set <code>stacked: true</code> in the scale options.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pie Charts Section -->
+        <section id="pie-charts" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Pie Charts</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Pie charts are circular charts divided into segments, where each segment represents a proportion
+                        of the whole. They're best used when you want to show the composition of something.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Pie Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="pie-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="pie-chart" data-action="download">
+                                              data-chart="pie-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="pie-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="usage-guide">
+                                <h3>When to Use Pie Charts</h3>
+                                <div class="usage-list">
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When you have a small number of categories (ideally 5 or fewer)</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When the parts add up to a meaningful whole (100%)</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When you want to emphasize a significant segment</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon bad">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <div class="usage-text">Hard to compare sizes of segments accurately</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon bad">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <div class="usage-text">Becomes cluttered with too many segments</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon bad">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <div class="usage-text">Not ideal for showing changes over time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Code Example: Pie Chart</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>JavaScript</span>
+                                <button class="copy-btn" data-clipboard-target="#code7">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript" id="code7">const ctx = document.getElementById('pie-chart').getContext('2d');
+const pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+        datasets: [{
+            label: 'Dataset 1',
+            data: [12, 19, 3, 5, 2],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)'
+            ],
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Color Preferences Survey'
+            }
+        }
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doughnut Charts Section -->
+        <section id="doughnut-charts" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Doughnut Charts</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Doughnut charts are similar to pie charts, but with a hole in the center. This can make them
+                        more visually appealing and allows for additional information to be displayed in the center.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Doughnut Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="doughnut-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="doughnut-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="doughnut-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3>Customizing Doughnut Charts</h3>
+                            <div class="options-grid">
+                                <div class="option-item">
+                                    <div class="option-name">cutout</div>
+                                    <div class="option-desc">Controls the size of the center hole (percentage of chart radius)</div>
+                                </div>
+                                <div class="option-item">
+                                    <div class="option-name">rotation</div>
+                                    <div class="option-desc">Rotation of the chart in degrees (default is 0)</div>
+                                </div>
+                                <div class="option-item">
+                                    <div class="option-name">circumference</div>
+                                    <div class="option-desc">Sweep of the chart (default is 360 degrees)</div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <p>
+                                    You can create semi-circle or gauge charts by adjusting the rotation and circumference.
+                                </p>
+                                <div class="interactive-control">
+                                    <label for="cutoutRange">Cutout Percentage:</label>
+                                    <input type="range" class="form-range" id="cutoutRange" min="0" max="90" value="70">
+                                    <span id="cutoutValue">70%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Code Example: Doughnut Chart</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>JavaScript</span>
+                                <button class="copy-btn" data-clipboard-target="#code8">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript" id="code8">const ctx = document.getElementById('doughnut-chart').getContext('2d');
+const doughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Desktop', 'Tablet', 'Mobile', 'Other'],
+        datasets: [{
+            label: 'Website Traffic',
+            data: [45, 12, 38, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(75, 192, 192, 0.8)'
+            ],
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Website Traffic by Device'
+            }
+        },
+        cutout: '70%'  // Controls the size of the hole
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Radar Charts Section -->
+        <section id="radar-charts" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Radar Charts</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Radar charts (also known as spider or web charts) display multivariate data on axes starting from the same point.
+                        They're useful for comparing multiple variables and seeing which variables have similar values.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Radar Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="radar-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="radar-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="radar-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="usage-guide">
+                                <h3>When to Use Radar Charts</h3>
+                                <div class="usage-list">
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When comparing multiple variables with the same scale</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When looking for patterns or outliers across multiple dimensions</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon good">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="usage-text">When comparing two or more data series across multiple variables</div>
+                                    </div>
+                                </div>
+                                <h3 class="mt-3">Best Practices</h3>
+                                <div class="usage-list">
+                                    <div class="usage-item">
+                                        <div class="usage-icon tip">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </div>
+                                        <div class="usage-text">Limit the number of variables (axes) to maintain readability</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon tip">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </div>
+                                        <div class="usage-text">Use consistent scales across all axes</div>
+                                    </div>
+                                    <div class="usage-item">
+                                        <div class="usage-icon tip">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </div>
+                                        <div class="usage-text">Consider using fill with transparency to show area</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3>Code Example: Radar Chart</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>JavaScript</span>
+                                <button class="copy-btn" data-clipboard-target="#code9">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript" id="code9">const ctx = document.getElementById('radar-chart').getContext('2d');
+const radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: [
+            'Eating',
+            'Drinking',
+            'Sleeping',
+            'Designing',
+            'Coding',
+            'Cycling',
+            'Running'
+        ],
+        datasets: [{
+            label: 'Person A',
+            data: [65, 59, 90, 81, 56, 55, 40],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }, {
+            label: 'Person B',
+            data: [28, 48, 40, 19, 96, 27, 100],
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)'
+        }]
+    },
+    options: {
+        elements: {
+            line: {
+                borderWidth: 3
+            }
+        }
+    }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Section -->
+        <section id="advanced" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Advanced Chart.js Features</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-12">
+                            <h3>Mixed Chart Types</h3>
+                            <p>
+                                Chart.js allows you to combine different chart types in a single chart.
+                                For example, you can have a line chart overlaid on a bar chart.
+                            </p>
+                            <div class="chart-card">
+                                <div class="chart-card-header">
+                                    <h3>Mixed Chart</h3>
+                                    <div class="chart-controls">
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="mixed-chart" data-action="randomize">
+                                            <i class="fas fa-random"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary chart-control-btn" data-chart="mixed-chart" data-action="download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="mixed-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="code-block mt-3">
+                                <div class="code-header">
+                                    <span>JavaScript</span>
+                                    <button class="copy-btn" data-clipboard-target="#code10">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript" id="code10">const ctx = document.getElementById('mixed-chart').getContext('2d');
+const mixedChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+            type: 'bar',
+            label: 'Revenue',
+            data: [50, 60, 70, 180, 190, 220],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgb(54, 162, 235)',
+            borderWidth: 1
+        }, {
+            type: 'line',
+            label: 'Profit',
+            data: [20, 25, 30, 60, 65, 75],
+            fill: false,
+            borderColor: 'rgb(255, 99, 132)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-lg-12">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Animations and Transitions</h3>
+                                    <p>
+                                        Chart.js provides powerful animation capabilities that can make your charts more engaging.
+                                        You can customize the animation duration, easing function, and even create custom animations.
+                                    </p>
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span>JavaScript</span>
+                                            <button class="copy-btn" data-clipboard-target="#code11">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-javascript" id="code11">// Animation configuration example
+const chart = new Chart(ctx, {
+    // ... chart configuration ...
+    options: {
+        animation: {
+            duration: 2000,  // Animation duration in milliseconds
+            easing: 'easeOutQuart',  // Easing function
+            // Custom animations for specific elements
+            animations: {
+                y: {
+                    duration: 2000,
+                    delay: 500
+                }
+            }
+        }
+    }
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-lg-12">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Plugins and Extensions</h3>
+                                    <p>
+                                        Chart.js has a plugin system that allows you to extend its functionality.
+                                        You can create custom plugins or use community-developed plugins for features like:
+                                    </p>
+                                    <div class="plugin-grid">
+                                        <div class="plugin-item">
+                                            <div class="plugin-icon">
+                                                <i class="fas fa-tag"></i>
+                                            </div>
+                                            <div class="plugin-name">Data labels</div>
+                                        </div>
+                                        <div class="plugin-item">
+                                            <div class="plugin-icon">
+                                                <i class="fas fa-search-plus"></i>
+                                            </div>
+                                            <div class="plugin-name">Zoom and pan</div>
+                                        </div>
+                                        <div class="plugin-item">
+                                            <div class="plugin-icon">
+                                                <i class="fas fa-comment-alt"></i>
+                                            </div>
+                                            <div class="plugin-name">Advanced tooltips</div>
+                                        </div>
+                                        <div class="plugin-item">
+                                            <div class="plugin-icon">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </div>
+                                            <div class="plugin-name">Annotations</div>
+                                        </div>
+                                    </div>
+                                    <div class="code-block mt-3">
+                                        <div class="code-header">
+                                            <span>JavaScript</span>
+                                            <button class="copy-btn" data-clipboard-target="#code12">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-javascript" id="code12">// Example of using a plugin (datalabels)
+const chart = new Chart(ctx, {
+    plugins: [ChartDataLabels],  // Register the plugin
+    // ... chart configuration ...
+    options: {
+        plugins: {
+            datalabels: {
+                color: '#fff',
+                font: {
+                    weight: 'bold'
+                }
+            }
+        }
+    }
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Responsive Charts</h3>
+                                    <p>
+                                        Chart.js is responsive by default, but you can customize how charts respond to different screen sizes.
+                                    </p>
+                                    <div class="code-block">
+                                        <div class="code-header">
+                                            <span>JavaScript</span>
+                                            <button class="copy-btn" data-clipboard-target="#code13">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-javascript" id="code13">const chart = new Chart(ctx, {
+    // ... chart configuration ...
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,  // Allow the chart to not maintain aspect ratio
+        aspectRatio: 2,  // Set a specific aspect ratio
+        
+        // Responsive options based on screen size
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    // Make the text smaller on small screens
+                    font: {
+                        size: (context) => {
+                            const width = context.chart.width;
+                            return width < 600 ? 10 : 14;
+                        }
+                    }
+                }
+            }
+        }
+    }
+});</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Try It Yourself Section -->
+        <section id="playground" class="mb-5" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Chart.js Playground</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">
+                        Experiment with Chart.js by modifying the code below and seeing the results in real-time.
+                    </p>
+                    
+                    <div class="playground-container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="playground-editor">
+                                    <div class="code-header">
+                                        <span>JavaScript</span>
+                                        <button class="btn btn-sm btn-primary" id="runCode">Run Code</button>
+                                    </div>
+                                    <textarea id="codeEditor" class="form-control" rows="15">
+const ctx = document.getElementById('playground-chart').getContext('2d');
+const playgroundChart = new Chart(ctx, {
+    type: 'bar',  // Try changing to: line, pie, doughnut, radar
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});</textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="playground-result">
+                                    <div class="chart-container">
+                                        <canvas id="playground-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-brand">
+                        <i class="fas fa-chart-simple me-2"></i>
+                        Chart.js Learning Hub
+                    </div>
+                    <p>A comprehensive resource for learning Chart.js</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#line-charts">Line Charts</a></li>
+                        <li><a href="#bar-charts">Bar Charts</a></li>
+                        <li><a href="#pie-charts">Pie Charts</a></li>
+                        <li><a href="#doughnut-charts">Doughnut Charts</a></li>
+                        <li><a href="#radar-charts">Radar Charts</a></li>
+                        <li><a href="#advanced">Advanced Features</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://www.chartjs.org/docs/latest/" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/chartjs/Chart.js" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://www.chartjs.org/samples/latest/" target="_blank">Examples</a></li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Stay Updated</h5>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Chart.js Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Clipboard.js for copy functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <!-- Prism.js for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+</body>
+</html>
